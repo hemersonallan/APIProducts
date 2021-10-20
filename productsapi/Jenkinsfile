@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Git Clone') {
+            steps {
+                sh ' rm -r -f /var/lib/jenkins/workspace/DEV-teste/APIProducts'
+                sh 'git clone https://github.com/hemersonallan/APIProducts.git'
+                echo 'Hello World'
+            }
+        }
+        stage('Autorizando'){
+            steps{
+                sh 'chmod +x /var/lib/jenkins/workspace/DEV-teste'
+                sh 'chmod +x /var/lib/jenkins/workspace/DEV-teste/APIProducts/productsapi/mvnw'
+                echo "Autorizado"
+            }
+        }
+        stage('Build/Deploy'){
+            steps{
+                sh 'cd /var/lib/jenkins/workspace/DEV-teste/APIProducts/productsapi; ./mvnw spring-boot:run'
+                echo "Construido com Sucesso"
+            }
+        }
+        stage('Observability'){
+            steps{
+                sh 'curl http://18.118.195.142:8081'    
+            }
+        }
+    }
+}
