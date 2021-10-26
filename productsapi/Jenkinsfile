@@ -21,9 +21,8 @@ node {
         stage("Deploy"){
             withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                 sh 'chmod +x mvnw'
-                sh './mvnw clean package -DskipTests'
+                sh 'nohup ./mvnw spring-boot:run -Dserver.port=8081 &'
                 echo 'Build Realizado com Sucesso!!!'
-                sh 'nohup java -jar /var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi/target/productsapi-0.0.1-SNAPSHOT.jar -Dserver.port=8081 &' 
                 echo 'Deploy Realizado com Sucesso!!!'
             }    
         }      
