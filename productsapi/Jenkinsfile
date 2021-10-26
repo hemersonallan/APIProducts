@@ -7,7 +7,7 @@ node {
                 sh 'fuser -n tcp -k 8081'
                 echo 'Processos na porta 8081 finalizados'              
             }catch (Exception e) {
-                echo 'Merda ao Finalizar: ' + e.toString()
+                echo 'Merda ao Finalizar : ' + e.toString()
             }
         }        
         echo 'Build Anterior Removida !!!'  
