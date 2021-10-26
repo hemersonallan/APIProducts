@@ -1,5 +1,5 @@
 node {
-    stage('Removendo Build Anterior'){
+    stage('Removing Last Build'){
         script{
             try{
                 sh 'fuser -n tcp -k 8081'
