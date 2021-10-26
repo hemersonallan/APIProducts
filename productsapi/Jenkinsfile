@@ -20,14 +20,18 @@ node {
         stage("Build"){
             sh 'chmod +x mvnw'
             sh './mvnw clean package'
+            echo 'Build Realizado com Sucesso!!!'
+        } 
+        stage("Deploy"){
+            sh 'java -jar /target/productsapi-0.0.1-SNAPSHT.jar'
            // withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                 
                 
               //  sh 'nohup ./mvnw spring-boot:run -Dserver.port=8081 &'
               //  sleep(15)
-                echo 'Deploy Realizado com Sucesso!!!'
+           //     echo 'Deploy Realizado com Sucesso!!!'
           //  }     
-        }       
+               
     }
     stage('Observability'){
     //    sh 'curl -i -l http://3.133.140.120:8081'
