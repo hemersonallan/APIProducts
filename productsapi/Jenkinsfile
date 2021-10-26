@@ -8,7 +8,7 @@ node {
                 echo 'Erro ao Finalizar: ' + e.toString()
             }
         }
-        sh 'chmod 777 /var/lib/jenkins/workspace/DEV-project/APIProducts/'
+        sh 'chmod 777 /var/lib/jenkins/workspace/DEV-project/APIP*'
         sh 'rm -r -f /var/lib/jenkins/workspace/DEV-project/APIP*'
         echo 'Build Anterior Removida !!!'  
     }
