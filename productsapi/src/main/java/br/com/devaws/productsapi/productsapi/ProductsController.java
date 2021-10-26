@@ -17,8 +17,7 @@ public class ProductsController {
         list.add(new Products("Produto11","Codigo10"));
         list.add(new Products("Produto22","Codigo20"));
         list.add(new Products("Produto33","Codigo30"));
-        list.add(new Products("Produto33","Codigo30"));
-        list.add(new Products("Produto44","Codigo40"));
+
         return list;
     }
 }
