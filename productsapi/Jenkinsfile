@@ -1,31 +1,32 @@
-pipeline {
-    agent any
-
-    stages {
-        stage('Git Clone') {
-            steps {
-                sh ' rm -r -f /var/lib/jenkins/workspace/DEV-teste/APIProducts'
-                sh 'git clone https://github.com/hemersonallan/APIProducts.git'
-                echo 'Hello World'
-            }
-        }
-        stage('Autorizando'){
-            steps{
-                sh 'chmod +x /var/lib/jenkins/workspace/DEV-teste'
-                sh 'chmod +x /var/lib/jenkins/workspace/DEV-teste/APIProducts/productsapi/mvnw'
-                echo "Autorizado"
-            }
-        }
-        stage('Build/Deploy'){
-            steps{
-                sh 'cd /var/lib/jenkins/workspace/DEV-teste/APIProducts/productsapi; ./mvnw spring-boot:run'
-                echo "Construido com Sucesso"
-            }
-        }
-        stage('Observability'){
-            steps{
-                sh 'curl http://18.118.195.142:8081'    
+node {
+    stage('Removendo Build Anterior'){
+        sh 'rm -r -f /var/lib/jenkins/workspace/DEV-project/APIP*'
+        echo "Build Anterior Removida"
+    }
+    stage('Matando 8081'){
+        script{
+            try{
+                sh 'fuser -n tcp -k 8081'
+                echo 'Processos na porta 8081 finalizados'
+            }catch (Exception e) {
+                echo 'Deu Merda: ' + e.toString()
             }
         }
     }
+    stage('Clonando Projeto') {
+        sh 'git clone https://github.com/hemersonallan/APIProducts.git'
+        echo 'Projeto Clonado'
+    }
+    dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') {
+        stage("Build/Deploy"){
+            withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
+                sh 'chmod +x mvnw'
+                sh 'nohup ./mvnw spring-boot:run -Dserver.port=8081 &'
+                sleep(15)
+            }     
+        }       
+    }
+    stage('Observability'){
+        sh 'curl -l http://3.142.133.157:8081'
+    }    
 }
