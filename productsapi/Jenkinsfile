@@ -28,6 +28,6 @@ node {
         }       
     }
     stage('Observability'){
-        sh 'curl -l http://3.142.133.157:8081'
+        sh 'curl -l http://localhost:8080'
     }    
 }
