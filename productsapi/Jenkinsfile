@@ -21,7 +21,7 @@ node {
                 sh 'chmod +x mvnw'
                 sh 'nohup ./mvnw spring-boot:run -Dserver.port=8081 &'
                 sleep(15)
-                echo 'Deploy Realizado com Sucesso !!!'
+                echo 'Deploy Realizado com Sucesso!!!'
             }     
         }       
     }
