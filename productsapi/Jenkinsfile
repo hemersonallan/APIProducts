@@ -21,19 +21,21 @@ node {
             sh 'chmod +x mvnw'
             sh './mvnw clean package'
             echo 'Build Realizado com Sucesso!!!'
-        } 
+        }
+    }
+    dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi/target') {
         stage("Deploy"){
             withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
-                sh 'nohup java -jar /target/productsapi-0.0.1-SNAPSHOT.jar &' 
+                sh 'nohup java -jar productsapi-0.0.1-SNAPSHOT.jar &' 
             }    
         }      
-                
+    }           
               //  sh 'nohup ./mvnw spring-boot:run -Dserver.port=8081 &'
               //  sleep(15)
            //     echo 'Deploy Realizado com Sucesso!!!'
           //  }     
                
-    }
+    
     stage('Observability'){
         sh 'curl -i -l http://3.133.140.120:8081'
         echo 'Ok'
