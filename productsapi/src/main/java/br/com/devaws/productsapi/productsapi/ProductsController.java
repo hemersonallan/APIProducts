@@ -15,8 +15,8 @@ public class ProductsController {
     public List<Products> listProducts(){
         ArrayList<Products> list = new ArrayList<Products>();
         list.add(new Products("Produto10","Codigo10"));
-        list.add(new Products("Produto2","Codigo2"));
-        list.add(new Products("Produto3","Codigo3"));
+        list.add(new Products("Produto20","Codigo20"));
+        list.add(new Products("Produto30","Codigo30"));
         return list;
     }
 }
