@@ -1,9 +1,5 @@
 node {
     stage('Removendo Build Anterior'){
-        sh 'rm -r -f /var/lib/jenkins/workspace/DEV-project/APIP*'
-        echo "Build Anterior Removida"
-    }
-    stage('Matando 8081'){
         script{
             try{
                 sh 'fuser -n tcp -k 8081'
@@ -12,6 +8,8 @@ node {
                 echo 'Deu Merda: ' + e.toString()
             }
         }
+        sh 'rm -r -f /var/lib/jenkins/workspace/DEV-project/APIP*'
+        echo "Build Anterior Removida"
     }
     stage('Clonando Projeto') {
         sh 'git clone https://github.com/hemersonallan/APIProducts.git'
