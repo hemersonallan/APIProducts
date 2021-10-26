@@ -5,7 +5,7 @@ node {
                 sh 'rm -r -f /var/lib/jenkins/workspace/DEV-project/APIProducts/'
                 echo 'Pasta APIProducts removida !!!'
                 sh 'fuser -n tcp -k 8081'
-                echo 'Processos na porta 8081 finalizados'              
+                echo 'Processos na porta 8081 finalizados '              
             }catch (Exception e) {
                 echo 'Merda ao Finalizar : ' + e.toString()
             }
