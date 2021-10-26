@@ -14,7 +14,7 @@ public class ProductsController {
     @GetMapping("/")
     public List<Products> listProducts(){
         ArrayList<Products> list = new ArrayList<Products>();
-        list.add(new Products("Produto1","Codigo1"));
+        list.add(new Products("Produto10","Codigo10"));
         list.add(new Products("Produto2","Codigo2"));
         list.add(new Products("Produto3","Codigo3"));
         return list;
