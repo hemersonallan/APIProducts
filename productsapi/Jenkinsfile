@@ -28,6 +28,6 @@ node {
         }       
     }
     stage('Observability'){
-        sh 'curl -l http://localhost:8081'
+        sh 'curl -l https://ebc4-179-251-193-164.ngrok.io'
     }    
 }
