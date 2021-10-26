@@ -27,6 +27,6 @@ node {
         }       
     }
     stage('Observability'){
-        sh 'curl -l http://localhost:8080'
+        sh 'curl -l http://localhost:8081'
     }    
 }
