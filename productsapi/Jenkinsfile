@@ -24,7 +24,7 @@ node {
         } 
         stage("Deploy"){
             withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
-                sh 'nohup java -jar /target/productsapi-0.0.1-SNAPSHT.jar &' 
+                sh 'nohup java -jar /target/productsapi-0.0.1-SNAPSHOT.jar &' 
             }    
         }      
                 
