@@ -18,8 +18,8 @@ node {
     }
     dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') {
         stage("Build"){
-            sh 'chmod +x mvn'
-            sh 'mvn clean package'
+            sh 'chmod +x mvnw'
+            sh './mvnw clean package'
            // withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                 
                 
