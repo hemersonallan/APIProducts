@@ -7,11 +7,12 @@ node {
             }catch (Exception e) {
                 echo 'Erro ao Finalizar: ' + e.toString()
             }
-        }finally{
-            sh 'chmod 777 /var/lib/jenkins/workspace/DEV-project/APIProducts/'
-            sh 'rm -r -f /var/lib/jenkins/workspace/DEV-project/APIP*'
-            echo "Build Anterior Removida !!!"
-        }
+            finally{
+                sh 'chmod 777 /var/lib/jenkins/workspace/DEV-project/APIProducts/'
+                sh 'rm -r -f /var/lib/jenkins/workspace/DEV-project/APIP*'
+                echo "Build Anterior Removida !!!"
+            }
+        }   
     }
     stage('Clonando Projeto') {
         sh 'git clone https://github.com/hemersonallan/APIProducts.git'
