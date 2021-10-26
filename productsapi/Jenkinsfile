@@ -23,8 +23,9 @@ node {
             echo 'Build Realizado com Sucesso!!!'
         } 
         stage("Deploy"){
-            sh 'nohup java -jar /target/productsapi-0.0.1-SNAPSHT.jar &'
-           // withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
+            withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
+                sh 'nohup java -jar /target/productsapi-0.0.1-SNAPSHT.jar &' 
+            }    
         }      
                 
               //  sh 'nohup ./mvnw spring-boot:run -Dserver.port=8081 &'
@@ -34,7 +35,7 @@ node {
                
     }
     stage('Observability'){
-    //    sh 'curl -i -l http://3.133.140.120:8081'
+        sh 'curl -i -l http://3.133.140.120:8081'
         echo 'Ok'
     }    
 }
