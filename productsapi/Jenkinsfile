@@ -23,7 +23,7 @@ node {
             echo 'Build Realizado com Sucesso!!!'
         } 
         stage("Deploy"){
-            sh 'java -jar /target/productsapi-0.0.1-SNAPSHT.jar'
+            sh 'nohup java -jar /target/productsapi-0.0.1-SNAPSHT.jar &'
            // withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                 
                 
