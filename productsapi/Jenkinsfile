@@ -9,7 +9,7 @@ node {
             }
         }
         sh 'rm -r -f /var/lib/jenkins/workspace/DEV-project/APIP*'
-        echo "Build Anterior Removida"
+        echo "Build Anterior Removida !!!"
     }
     stage('Clonando Projeto') {
         sh 'git clone https://github.com/hemersonallan/APIProducts.git'
