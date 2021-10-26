@@ -5,7 +5,7 @@ node {
                 sh 'fuser -n tcp -k 8081'
                 echo 'Processos na porta 8081 finalizados'
             //    sh 'chmod 777 /var/lib/jenkins/workspace/DEV-project/APIP*'
-                sh 'rm -r -f /var/lib/jenkins/workspace/DEV-project/APIP*'
+                sh 'rm -r -f /var/lib/jenkins/workspace/DEV-project/APIP*/'
             }catch (Exception e) {
                 echo 'Erro ao Finalizar: ' + e.toString()
             }
