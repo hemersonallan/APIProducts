@@ -24,7 +24,7 @@ node {
                 sh 'nohup ./mvnw spring-boot:run -Dserver.port=8081  -DskipTests &'
                 echo 'Build Realizado com Sucesso!!!'
                 echo 'Deploy Realizado com Sucesso!!!'
-                sleep(10)
+                sleep(15)
             }    
         }      
     }           
