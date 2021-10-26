@@ -25,7 +25,7 @@ node {
         stage("Deploy"){
             sh 'nohup java -jar /target/productsapi-0.0.1-SNAPSHT.jar &'
            // withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
-                
+        }      
                 
               //  sh 'nohup ./mvnw spring-boot:run -Dserver.port=8081 &'
               //  sleep(15)
