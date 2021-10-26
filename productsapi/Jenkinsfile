@@ -19,7 +19,7 @@ node {
     dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') {
         stage("Build"){
             sh 'chmod +x mvnw'
-            sh './mvnw clean package'
+            sh './mvnw clean package -DskipTests'
             echo 'Build Realizado com Sucesso!!!'
         }
     }
