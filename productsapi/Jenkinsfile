@@ -8,7 +8,7 @@ node {
                 echo 'Processos na porta 8081 finalizados'
             //    sh 'chmod 777 /var/lib/jenkins/workspace/DEV-project/APIP*'                
             }catch (Exception e) {
-                echo 'Erro ao Finalizar: ' + e.toString()
+                echo 'Merda ao Finalizar: ' + e.toString()
             }
         }        
         echo 'Build Anterior Removida !!!'  
