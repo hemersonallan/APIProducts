@@ -1,4 +1,5 @@
-node {
+pipeline {
+    agent any
     stage('Removing Last Build'){
         script{
             try{
