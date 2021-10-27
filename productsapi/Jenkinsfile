@@ -22,10 +22,9 @@ pipeline {
                 echo 'Projeto Clonado'
             }    
         }
-
-        dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') {
-            stage("Deploy"){
-                steps{
+        stage("Deploy"){
+             steps{
+                 dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') {
                     withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                         sh 'chmod +x mvnw'
                         sh 'nohup ./mvnw spring-boot:run -Dserver.port=8081  -DskipTests &'
