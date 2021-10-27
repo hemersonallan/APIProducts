@@ -30,6 +30,6 @@ node {
     }               
     stage('Observability'){
         sh 'curl -i -l http://3.133.140.120:8081'
-        echo 'Enviado pelo Github !!!'
+        echo 'Tentando enviar pelo Github !!!'
     }    
 }
