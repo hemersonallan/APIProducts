@@ -1,36 +1,38 @@
 pipeline {
     agent any
-    stage('Removing Last Build'){
-        script{
-            try{
-                sh 'rm -r -f /var/lib/jenkins/workspace/DEV-project/APIProducts/'
-                echo 'Pasta APIProducts removida !!!'
-                sh 'fuser -n tcp -k 8081'
-                echo 'Processos na porta 8081 finalizados !!!'              
-            }catch (Exception e) {
-                echo 'Merda ao Finalizar : ' + e.toString()
-            }
-        }        
-        echo 'Build Anterior Removida !!!'  
-    }
-    stage('Clonando Projeto') {
-        sh 'git clone https://github.com/hemersonallan/APIProducts.git'
-        echo 'Projeto Clonado'
-    }
-    
-    dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') {
-        stage("Deploy"){
-            withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
-                sh 'chmod +x mvnw'
-                sh 'nohup ./mvnw spring-boot:run -Dserver.port=8081  -DskipTests &'
-                //echo 'Build Realizado com Sucesso!!!'
-                echo 'Deploy Realizado com Sucesso!!!'
-                sleep(15)
-            }    
-        }      
-    }               
-    stage('Observability'){
-        sh 'curl -i -l http://3.133.140.120:8081'
-        echo 'Tentando enviar pelo Github !!!'
-    }    
+    stages{
+        stage('Removing Last Build'){
+            script{
+                try{
+                    sh 'rm -r -f /var/lib/jenkins/workspace/DEV-project/APIProducts/'
+                    echo 'Pasta APIProducts removida !!!'
+                    sh 'fuser -n tcp -k 8081'
+                    echo 'Processos na porta 8081 finalizados !!!'              
+                }catch (Exception e) {
+                    echo 'Merda ao Finalizar : ' + e.toString()
+                }
+            }        
+            echo 'Build Anterior Removida !!!'  
+        }
+        stage('Clonando Projeto') {
+            sh 'git clone https://github.com/hemersonallan/APIProducts.git'
+            echo 'Projeto Clonado'
+        }
+
+        dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') {
+            stage("Deploy"){
+                withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
+                    sh 'chmod +x mvnw'
+                    sh 'nohup ./mvnw spring-boot:run -Dserver.port=8081  -DskipTests &'
+                    //echo 'Build Realizado com Sucesso!!!'
+                    echo 'Deploy Realizado com Sucesso!!!'
+                    sleep(15)
+                }    
+            }      
+        }               
+        stage('Observability'){
+            sh 'curl -i -l http://3.133.140.120:8081'
+            echo 'Tentando enviar pelo Github !!!'
+        }
+    }     
 }
