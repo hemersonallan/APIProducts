@@ -36,7 +36,7 @@ pipeline {
         }               
         stage('Observability'){
             steps{
-                sh 'curl -i -l http://3.133.140.120:8081'
+                sh 'curl -i -l http://3.133.161.133:8081'
                 echo 'Tentando enviar pelo Github !!!'
             }
         }
