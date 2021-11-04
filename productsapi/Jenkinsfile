@@ -8,8 +8,8 @@ node {
              }catch (Exception e) {
                 echo 'Erro ao Clonar : ' + e.toString()
              }   
-             echo 'Estagio 1 Finalizado !'
         }
+        echo 'Estagio 1 Finalizado !'
     }
     stage('Stop Http servers'){
          script{
@@ -18,9 +18,9 @@ node {
                 echo 'Processos Http finalizados !!!' 
              }catch (Exception e) {
                 echo 'Erro finalizando processos Http: ' + e.toString()
-             }   
-             echo 'Estagio 2 Finalizado'
-        }       
+             }                
+        }
+        echo 'Estagio 2 Finalizado'
     }
     stage("Compile Package"){
         dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') {
@@ -37,9 +37,10 @@ node {
         }   
     }
     stage('Deploying the Project'){
-        dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') { 
+        dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi/target/') { 
             withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
-                sh "nohup ${mvnHome}/bin/mvn spring-boot:run -Dserver.port=8081  -DskipTests &"
+                //sh "nohup ${mvnHome}/bin/mvn spring-boot:run -Dserver.port=8081  -DskipTests &"
+                sh 'nohup java -jar productsapi-0.0.1-SNAPSHOT.jar -Dserver.port=8081  -DskipTests &'
                 sleep(15)
                 echo 'Estagio 5 Finalizado'    
             }
