@@ -17,11 +17,11 @@ pipeline {
             }   
         }
         stage('Clonando Projeto') {
-          //  steps{
-                git 'https://github.com/hemersonallan/APIProducts'
-               // sh 'git clone https://github.com/hemersonallan/APIProducts.git'
-          //      echo 'Projeto Clonado'
-         //   }    
+            steps{
+               // git 'https://github.com/hemersonallan/APIProducts'
+                sh 'git clone https://github.com/hemersonallan/APIProducts.git'
+                echo 'Projeto Clonado'
+            }    
         }
         stage("Deploy"){
              steps{
