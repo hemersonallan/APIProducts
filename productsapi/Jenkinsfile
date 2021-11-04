@@ -20,31 +20,18 @@ node {
              }   
              echo 'Estagio 2 Finalizado'
         }       
-    }  
-}
-    /*          script{
-                    try{
-                        sh 'rm -r -f /var/lib/jenkins/workspace/DEV-project/APIProducts/'
-                        echo 'Pasta APIProducts removida !!!'
-                        sh 'fuser -n tcp -k 8081'
-                        echo 'Processos na porta 8081 finalizados !!!'              
-                    }catch (Exception e) {
-                        echo 'Merda ao Finalizar : ' + e.toString()
-                    }
-                }        
-                echo 'Build Anterior Removida !!!'  
-            }   
+    }
+    stage("Compile Package"){
+        def mvnHome = tool name: 'maven3', type: 'maven'
+        dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') {
+            sh "${mvnHome}/bin/mvn clean package"
         }
-        stage('Clonando Projeto') {
-            steps{
-               // 
-                sh 'git clone https://github.com/hemersonallan/APIProducts.git'
-                echo 'Projeto Clonado'
-            }    
-        }
-        stage("Deploy"){
-             steps{
-                 dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') {
+    }
+}    
+ /*   
+    stage("Deploy"){
+    dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') {
+        
                     withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                         sh 'chmod +x mvnw'
                         sh 'nohup ./mvnw spring-boot:run -Dserver.port=8081  -DskipTests &'
