@@ -1,9 +1,17 @@
-pipeline {
-    agent any
-    stages{
-        stage('Removing Last Build'){
-            steps{
-                script{
+node {
+    stage('SCM Checkout'){
+        script{
+            try{
+                git 'https://github.com/hemersonallan/APIProducts'
+                echo 'Projeto Clonado'
+             }catch (Exception e) {
+                echo 'Merda ao Finalizar : ' + e.toString()
+             }   
+             echo 'Estagio 1 Finalizado'
+        }
+    }
+}
+    /*             script{
                     try{
                         sh 'rm -r -f /var/lib/jenkins/workspace/DEV-project/APIProducts/'
                         echo 'Pasta APIProducts removida !!!'
@@ -18,7 +26,7 @@ pipeline {
         }
         stage('Clonando Projeto') {
             steps{
-               // git 'https://github.com/hemersonallan/APIProducts'
+               // 
                 sh 'git clone https://github.com/hemersonallan/APIProducts.git'
                 echo 'Projeto Clonado'
             }    
@@ -43,3 +51,5 @@ pipeline {
         }
     }    
 }
+*/
+
