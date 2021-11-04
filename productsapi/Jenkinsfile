@@ -46,6 +46,6 @@ node {
     stage('Observability'){
         sh 'curl -i -l http://3.133.161.133:8081'
         echo 'Observability ok!!!'
-        echo 'Estagio 6 Finalizado' 
+        echo 'Estagio 6 Finalizado !' 
     }   
 }    
