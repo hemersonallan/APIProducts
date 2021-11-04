@@ -8,7 +8,7 @@ node {
              }catch (Exception e) {
                 echo 'Erro ao Clonar : ' + e.toString()
              }   
-             echo 'Estagio 1 Finalizado'
+             echo 'Estagio 1 Finalizado !'
         }
     }
     stage('Stop Http servers'){
