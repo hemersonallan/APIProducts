@@ -28,18 +28,24 @@ node {
             echo 'Estagio 3 Finalizado'
         }
     }
+    stage('SonarQube Analise'){
+        withSonarQubeEnv('SONAR_LOCAL'){
+            sh "${mvnHome}/bin/mvn sonar:sonar
+            echo 'Estagio 4 Finalizado'
+        }    
+    }
     stage('Deploying the Project'){
         dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') { 
             withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                 sh "nohup ${mvnHome}/bin/mvn spring-boot:run -Dserver.port=8081  -DskipTests &"
                 sleep(15)
-                echo 'Estagio 4 Finalizado'    
+                echo 'Estagio 5 Finalizado'    
             }
         }
     }
     stage('Observability'){
         sh 'curl -i -l http://3.133.161.133:8081'
         echo 'Observability ok!!!'
-        echo 'Estagio 5 Finalizado' 
+        echo 'Estagio 6 Finalizado' 
     }   
 }    
