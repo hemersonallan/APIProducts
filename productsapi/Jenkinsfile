@@ -43,21 +43,3 @@ node {
         echo 'Estagio 5 Finalizado' 
     }   
 }    
- /*   
-    stage("Deploy"){
-    dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') {
-        
-                    withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
-                        sh 'chmod +x mvnw'
-                        sh 'nohup ./mvnw spring-boot:run -Dserver.port=8081  -DskipTests &'
-                        echo 'Deploy Realizado com Sucesso!!!'
-                        sleep(15)
-                    }
-                }
-            }      
-        }               
-        
-    }    
-}
-*/
-
