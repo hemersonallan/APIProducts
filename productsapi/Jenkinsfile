@@ -14,7 +14,7 @@ node {
          script{
             try{
                 sh 'fuser -n tcp -k 8081'
-                echo 'Processos na porta 8081 finalizados !!!' 
+                echo 'Processos Http finalizados !!!' 
              }catch (Exception e) {
                 echo 'Erro finalizando processos Http: ' + e.toString()
              }   
@@ -25,8 +25,15 @@ node {
         def mvnHome = tool name: 'maven3', type: 'maven'
         dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') {
             sh "${mvnHome}/bin/mvn clean package"
+            echo 'Estagio 3 Finalizado'
         }
     }
+    stage('Deploying the Project'){
+        withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
+            sh "nohup ${mvnHome}/bin/mvn spring-boot:run -Dserver.port=8081  -DskipTests &"
+            echo 'Estagio 4 Finalizado'    
+        }
+    }    
 }    
  /*   
     stage("Deploy"){
