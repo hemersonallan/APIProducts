@@ -5,13 +5,24 @@ node {
                 git 'https://github.com/hemersonallan/APIProducts'
                 echo 'Projeto Clonado'
              }catch (Exception e) {
-                echo 'Merda ao Finalizar : ' + e.toString()
+                echo 'Erro ao Clonar : ' + e.toString()
              }   
              echo 'Estagio 1 Finalizado'
         }
     }
+    stage('Stop Http servers'){
+         script{
+            try{
+                sh 'fuser -n tcp -k 8081'
+                echo 'Processos na porta 8081 finalizados !!!' 
+             }catch (Exception e) {
+                echo 'Erro finalizando processos Http: ' + e.toString()
+             }   
+             echo 'Estagio 2 Finalizado'
+        }       
+    }  
 }
-    /*             script{
+    /*          script{
                     try{
                         sh 'rm -r -f /var/lib/jenkins/workspace/DEV-project/APIProducts/'
                         echo 'Pasta APIProducts removida !!!'
