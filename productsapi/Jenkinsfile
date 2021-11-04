@@ -30,7 +30,7 @@ node {
     }
     stage('SonarQube Analise'){
         withSonarQubeEnv('SONAR_LOCAL'){
-            sh "${mvnHome}/bin/mvn sonar:sonar
+            sh "${mvnHome}/bin/mvn sonar:sonar"
             echo 'Estagio 4 Finalizado'
         }    
     }
