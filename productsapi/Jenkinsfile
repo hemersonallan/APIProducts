@@ -32,9 +32,15 @@ node {
         dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') { 
             withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                 sh "nohup ${mvnHome}/bin/mvn spring-boot:run -Dserver.port=8081  -DskipTests &"
+                sleep(15)
                 echo 'Estagio 4 Finalizado'    
             }
         }
+    }
+    stage('Observability'){
+        sh 'curl -i -l http://3.133.161.133:8081'
+        echo 'Observability ok!!!'
+        echo 'Estagio 5 Finalizado' 
     }   
 }    
  /*   
@@ -50,12 +56,7 @@ node {
                 }
             }      
         }               
-        stage('Observability'){
-            steps{
-                sh 'curl -i -l http://3.133.161.133:8081'
-                echo 'Observability ok!!!'
-            }
-        }
+        
     }    
 }
 */
