@@ -1,4 +1,5 @@
 node {
+    def mvnHome = tool name: 'maven3', type: 'maven'
     stage('SCM Checkout'){
         script{
             try{
@@ -22,7 +23,6 @@ node {
         }       
     }
     stage("Compile Package"){
-        def mvnHome = tool name: 'maven3', type: 'maven'
         dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') {
             sh "${mvnHome}/bin/mvn clean package"
             echo 'Estagio 3 Finalizado'
