@@ -18,7 +18,8 @@ pipeline {
         }
         stage('Clonando Projeto') {
             steps{
-                sh 'git clone https://github.com/hemersonallan/APIProducts.git'
+                git 'https://github.com/hemersonallan/APIProducts'
+               // sh 'git clone https://github.com/hemersonallan/APIProducts.git'
                 echo 'Projeto Clonado'
             }    
         }
