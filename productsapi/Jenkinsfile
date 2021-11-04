@@ -29,6 +29,7 @@ node {
         }
     }
     stage('SonarQube Analise'){
+        dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') {
         withSonarQubeEnv('SONAR_LOCAL'){
             sh "${mvnHome}/bin/mvn sonar:sonar"
             echo 'Estagio 4 Finalizado'
