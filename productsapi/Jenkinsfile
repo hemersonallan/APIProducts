@@ -29,11 +29,13 @@ node {
         }
     }
     stage('Deploying the Project'){
-        withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
-            sh "nohup ${mvnHome}/bin/mvn spring-boot:run -Dserver.port=8081  -DskipTests &"
-            echo 'Estagio 4 Finalizado'    
+        dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') { 
+            withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
+                sh "nohup ${mvnHome}/bin/mvn spring-boot:run -Dserver.port=8081  -DskipTests &"
+                echo 'Estagio 4 Finalizado'    
+            }
         }
-    }    
+    }   
 }    
  /*   
     stage("Deploy"){
