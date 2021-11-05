@@ -38,9 +38,11 @@ node {
     }
 */  stage('SonarQube Analysis') {
         def mvn = tool 'maven3';
-        withSonarQubeEnv() {
-          sh "${mvn}/bin/mvn clean verify sonar:sonar"
-        }
+        dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') {
+            withSonarQubeEnv() {
+              sh "${mvn}/bin/mvn clean verify sonar:sonar"
+            }
+        }   
     }
     
     stage('Deploying the Project'){
