@@ -15,7 +15,7 @@
 	<description>Projeto de Teste</description>
 	<properties>
 		<java.version>11</java.version>
-		<sonar.projectKey>productsapi</sonar.projectKey>
+		<sonar.projectKey>apiproducts</sonar.projectKey>
 		
 	</properties>
 
