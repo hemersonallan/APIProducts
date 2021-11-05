@@ -17,7 +17,7 @@ node {
                 sh 'fuser -n tcp -k 8081'
                 echo 'Processos Http finalizados !!!' 
              }catch (Exception e) {
-                echo 'Erro finalizando processos Http: ' + e.toString()
+                echo 'Erro finalizando Http: ' + e.toString()
              }                
         }
         echo 'Estagio 2 Finalizado'
@@ -47,7 +47,7 @@ node {
         }
     }
     stage('Observability'){
-        sh 'curl -i -l http://3.133.161.133:8081'
+        sh 'curl -i -l http://3.141.42.5:8081'
         echo 'Observability ok!!!'
         echo 'Estagio 6 Finalizado !' 
     }   
