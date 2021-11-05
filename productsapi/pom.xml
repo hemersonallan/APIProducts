@@ -15,7 +15,9 @@
 	<description>Projeto de Teste</description>
 	<properties>
 		<java.version>11</java.version>
+		<sonar.projectKey>apiproducts</sonar.projectKey>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
