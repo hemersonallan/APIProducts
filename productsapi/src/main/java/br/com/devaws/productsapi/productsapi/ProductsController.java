@@ -13,7 +13,7 @@ public class ProductsController {
     
     @GetMapping("/")
     public List<Products> listProducts(){
-        ArrayList<Products> list = new ArrayList<Products>();
+        ArrayList<Products> list = new ArrayList<>();
         list.add(new Products("Produto1","Codigo10"));
         list.add(new Products("Produto2","Codigo20"));
         list.add(new Products("Produto3","Codigo30"));
