@@ -6,7 +6,7 @@ node {
                 git 'https://github.com/hemersonallan/APIProducts'
                 echo 'Projeto Clonado'
              }catch (Exception e) {
-                echo 'Erro ao Clonar : ' + e.toString()
+                echo 'Erro ao Clonar: ' + e.toString()
              }   
         }
         echo 'Estagio 1 Finalizado !'
