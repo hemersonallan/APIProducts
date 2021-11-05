@@ -28,7 +28,7 @@ node {
             echo 'Estagio 3 Finalizado'
         }
     }
-    stage('SonarQube Analise'){
+/*    stage('SonarQube Analise'){
         dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi') {
             withSonarQubeEnv('SONAR_LOCAL'){
                 sh "${mvnHome}/bin/mvn sonar:sonar"
@@ -36,6 +36,13 @@ node {
             }
         }   
     }
+*/  stage('SonarQube Analysis') {
+        def mvn = tool 'Default Maven';
+        withSonarQubeEnv() {
+          sh "${mvn}/bin/mvn clean verify sonar:sonar"
+        }
+    }
+    
     stage('Deploying the Project'){
         dir('/var/lib/jenkins/workspace/DEV-project/APIProducts/productsapi/target/') { 
             withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
